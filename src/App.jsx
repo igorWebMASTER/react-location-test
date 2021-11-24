@@ -5,16 +5,36 @@ import { Router, Route, Outlet, ReactLocation, Link, useMatch } from 'react-loca
 import "./index.scss";
 
 
+const Product  = () => {
+  const params  = useMatch().params;
+
+  return (
+    <div>
+      Product page: {JSON.stringify(params)}
+    </div>
+  )
+}
+
 const routes  = [
   {
     path: '/',
     element: <div> Home Page</div>
   },
   {
+    path: 'product',
+    children: [
+      {
+        path: ':id',
+        element: <Product />
+      }
+    ]
+  }
+  ,
+  {
     path: '/about',
     element: <div> About Page</div>
   }
-]
+];
 
 const location = new ReactLocation();
 
